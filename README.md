@@ -1,8 +1,8 @@
 # SciaOpenAPI_example_VBA
 ## Prepare the environment
-- install SCIA Engineer
-- install MS Office
 - install .NET FW 4.6.1 or newer
+- install MS Office
+- install SCIA Engineer
 - find your .NET FW install directory (e.g. c:\Windows\Microsoft.NET\Framework\v4.0.30319) 
 - start command line AS ADMINISTRATOR and navigate to that directory and execute following command (if needed, adjust the actual path to SCIA Engineer install directory):
 ```
