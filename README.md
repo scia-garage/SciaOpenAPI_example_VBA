@@ -4,7 +4,7 @@
 - install MS Office
 - find your .NET FW install directory (e.g. c:\Windows\Microsoft.NET\Framework\v4.0.30319) 
 - start command line AS ADMINISTRATOR and navigate to that directory
-- run "regasm <path_to_scia_engineer>\SCIA.OpenAPI.dll /tlb:<path_to_scia_engineer>\SCIA.OpenAPI.tlb
+- run regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb" (if needed, adjust the actual path to SCIA Engineer install directory
 
 ## Start your development in VBA...for instance:
 - create new Excel sheet
