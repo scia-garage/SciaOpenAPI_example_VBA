@@ -9,6 +9,8 @@
 ```
  regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb" 
  ```
+* copy from c:\Windows\Microsoft.NET\Framework\v4.0.30319 to C:\Program Files (x86)\Microsoft Office\root\vfs\Windows\Microsoft.NET\Framework\v4.0.30319
+* follow https://support.microsoft.com/cs-cz/help/2683270/vba-error-handling-may-result-in-search-for-winhelp-ini (my path C:\Program Files (x86)\Microsoft Office\root\vfs\ProgramFilesCommonX86\Microsoft Shared\VBA\VBA7.1\1029)
 
 ## Start your development in VBA...for instance:
 - create new Excel sheet
