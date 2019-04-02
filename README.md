@@ -7,7 +7,7 @@
         * find your .NET FW install directory (e.g. c:\Windows\Microsoft.NET\Framework\v4.0.30319 for 32bit, c:\Windows\Microsoft.NET\Framework64\v4.0.30319) 
         * start command line AS ADMINISTRATOR and navigate to that directory and execute following command (if needed, adjust the actual path to SCIA Engineer install directory):
 ```
- regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb /codebase" 
+ regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb" /codebase 
 ```
 * copy the .\res.\excel.config file to Excel.exe location (e.g. for 32bit MS Office c:\Program Files (x86)\Microsoft Office\root\Office16\ )
 * copy ESAAtl80Extern.dll and FemBase.dll from Scia Engineer install directory to the Excel.exe location (e.g. c:\Program Files (x86)\Microsoft Office\root\Office16\)
