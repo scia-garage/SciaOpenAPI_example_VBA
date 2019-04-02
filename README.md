@@ -19,7 +19,9 @@
 - File > Options > Cutomize Ribbon
 - Under Customize the Ribbon and under Main Tabs, select the Developer check box
 - In Excel sheet on Developer tab click the "Visual Basic"
-- In Visual Basic editor select Tools>References and check the "SCIA API for external developers"
+- In Visual Basic editor select Tools>References and:
+-- check the "SCIA API for external developers"
+-- click Browse and find "c:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.tlb"
 - You can validate that you can see SCIA.OpenAPI.dll classes in View > Object Browser
 //- in your script you must change current directory to Scia Engineer install directory using ChDir "c:\Program Files (x86)\SCIA\Engineer19.0\" (because of ESAAtl80Extern.dll)
 - You can start your VBA development using the SCIA.OpenAPI.dll functionality

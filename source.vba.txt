@@ -1,0 +1,38 @@
+Option Explicit
+
+Public Sub Calculate()
+'ChDir "c:\SCIA\GIT\SEN\A\Bin\release32"
+
+  Dim SENpath As String
+  SENpath = Range("B1").Value
+  
+  Dim templ As String
+  templ = Range("B2").Value
+  
+  Debug.Print SENpath
+  Debug.Print templ
+  
+  'Dim env As New SCIA_OpenAPI.Environment(SENpath,".\temp")
+  Dim env As environment
+  Set env = New environment
+  
+  Call env.Init(SENpath, ".\tmp")
+  
+  Call env.RunSCIAEngineer(GuiMode_ShowWindowShow)
+  Debug.Print "SEn started"
+  
+  
+  Dim proj As EsaProject
+  Set proj = env.OpenProject("c:\SCIA\GIThub\SciaOpenAPI_example_VBA\res\template.esa")
+  Debug.Print "Template opened"
+  
+  'Dim guid As New mscorlib.guid
+  'Set guid = mscorlib.guid.NewGuid()
+  
+  
+  
+  
+  MsgBox "Path to SEn is: " + SENpath + vbCrLf + vbCrLf + "Path to template project is: " + templ
+
+
+End Sub
