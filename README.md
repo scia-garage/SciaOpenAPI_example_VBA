@@ -9,12 +9,13 @@
 ```
  regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb" /codebase 
 ```
+* run SCIA Engineer to check it works (e.g. set protection, etc.)
 * copy the .\res.\excel.config file to Excel.exe location (e.g. for 32bit MS Office c:\Program Files (x86)\Microsoft Office\root\Office16\ )
-* copy ESAAtl80Extern.dll and FemBase.dll from Scia Engineer install directory to the Excel.exe location (e.g. c:\Program Files (x86)\Microsoft Office\root\Office16\)
+* copy ESAAtl80Extern.dll and FemBase.dll (FemBase.dll for 64bit version) from Scia Engineer install directory to the Excel.exe location (e.g. c:\Program Files (x86)\Microsoft Office\root\Office16\)
 
 
 ## Start your development in VBA...for instance:
-- start Excel AS ADMINISTRATOR
+- start Excel
 - create new Excel sheet
 - File > Options > Cutomize Ribbon
 - Under Customize the Ribbon and under Main Tabs, select the Developer check box
