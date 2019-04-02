@@ -7,16 +7,20 @@
         * find your .NET FW install directory (e.g. c:\Windows\Microsoft.NET\Framework\v4.0.30319) 
         * start command line AS ADMINISTRATOR and navigate to that directory and execute following command (if needed, adjust the actual path to SCIA Engineer install directory):
 ```
- regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb" 
- ```
-* copy from c:\Windows\Microsoft.NET\Framework\v4.0.30319 to C:\Program Files (x86)\Microsoft Office\root\vfs\Windows\Microsoft.NET\Framework\v4.0.30319
-* follow https://support.microsoft.com/cs-cz/help/2683270/vba-error-handling-may-result-in-search-for-winhelp-ini (my path C:\Program Files (x86)\Microsoft Office\root\vfs\ProgramFilesCommonX86\Microsoft Shared\VBA\VBA7.1\1029)
+ regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb /codebase" 
+```
+* copy the .\res.\excel.config file to c:\Program Files (x86)\Microsoft Office\root\Office16\
+* copy ESAAtl80Extern.dll and FemBase.dll from Scia Engineer install directory to the Excel.exe location (e.g. c:\Program Files (x86)\Microsoft Office\root\Office16\)
+
 
 ## Start your development in VBA...for instance:
+- start Excel AS ADMINISTRATOR
 - create new Excel sheet
 - File > Options > Cutomize Ribbon
 - Under Customize the Ribbon and under Main Tabs, select the Developer check box
 - In Excel sheet on Developer tab click the "Visual Basic"
 - In Visual Basic editor select Tools>References and check the "SCIA API for external developers"
 - You can validate that you can see SCIA.OpenAPI.dll classes in View > Object Browser
+//- in your script you must change current directory to Scia Engineer install directory using ChDir "c:\Program Files (x86)\SCIA\Engineer19.0\" (because of ESAAtl80Extern.dll)
 - You can start your VBA development using the SCIA.OpenAPI.dll functionality
+=========================================
