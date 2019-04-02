@@ -18,7 +18,7 @@
 - start Excel
 - create new Excel sheet
 - File > Options > Cutomize Ribbon
-- Under Customize the Ribbon and under Main Tabs, select the Developer check box
+- In Main Tabs pan, check the Developer checkbox, click OK
 - In Excel sheet on Developer tab click the "Visual Basic"
 - In Visual Basic editor select Tools>References and:
 -- check the "SCIA API for external developers"

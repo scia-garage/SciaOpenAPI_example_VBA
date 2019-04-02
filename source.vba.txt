@@ -23,16 +23,16 @@ Public Sub Calculate()
   
   
   Dim proj As EsaProject
-  Set proj = env.OpenProject("c:\SCIA\GIThub\SciaOpenAPI_example_VBA\res\template.esa")
+  Set proj = env.OpenProject(templ)
   Debug.Print "Template opened"
   
-  'Dim guid As New mscorlib.guid
-  'Set guid = mscorlib.guid.NewGuid()
+  'Dim guid As mscorlib.guid
+  'Set guid = mscorlib.
   
   
   
-  
-  MsgBox "Path to SEn is: " + SENpath + vbCrLf + vbCrLf + "Path to template project is: " + templ
+  Call proj.CloseProject(SaveMode_SaveChangesNo)
+  'MsgBox "Path to SEn is: " + SENpath + vbCrLf + vbCrLf + "Path to template project is: " + templ
 
 
 End Sub
