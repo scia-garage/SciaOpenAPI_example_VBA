@@ -28,3 +28,6 @@ regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Progra
 * (obsolete: in your script you must change current directory to Scia Engineer install directory using ChDir "c:\Program Files (x86)\SCIA\Engineer19.0\" (because of ESAAtl80Extern.dll) )
 * You can start your VBA development using the SCIA.OpenAPI.dll functionality
 =========================================
+
+## Remarks
+* using of several versions of Scia Engineer at once: communicatino between VBA and Scia Engineer is based on COM technology. During SCIA Engineer installation the SCIA.OpenAPI.dll is registered into windows registry using the c# registration utility REGASM.EXE. In VBA in Tools>Reference you see only currenlty registered version of SCIA.OpenAPI.dll. If you want to use previous version of SCIA.OpenAPI.dll, you must register this particular verision into registry.
