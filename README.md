@@ -26,7 +26,6 @@ regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Progra
 	* click Browse and find "c:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.tlb"
 * You can validate that you can see SCIA.OpenAPI.dll classes in View > Object Browser
 * You can start your VBA development using the SCIA.OpenAPI.dll functionality
-=========================================
 
 ## Remarks
 * using of several versions of Scia Engineer at once: communicatino between VBA and Scia Engineer is based on COM technology. During SCIA Engineer installation the SCIA.OpenAPI.dll is registered into windows registry using the c# registration utility REGASM.EXE. In VBA in Tools>Reference you see only currenlty registered version of SCIA.OpenAPI.dll. If you want to use previous version of SCIA.OpenAPI.dll, you must register this particular verision into registry.
