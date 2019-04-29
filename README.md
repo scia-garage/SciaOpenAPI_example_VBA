@@ -4,7 +4,7 @@
 * install SCIA Engineer (32bit / 64bit according to MS Office)
     * following steps should be done automatically during SCIA Engineer setup:
         * install .NET FW 4.6.1 or newer
-        * start command line AS ADMINISTRATOR and navigate to SEn install directory and run ep_regsvr32 esa.exe
+        * start command line AS ADMINISTRATOR and navigate to SEn install directory and run "ep_regsvr32 esa.exe" (for 64bit "ep_regsvr64 esa.exe")
         * find your .NET FW install directory (e.g. c:\Windows\Microsoft.NET\Framework\v4.0.30319 for 32bit, c:\Windows\Microsoft.NET\Framework64\v4.0.30319) 
         * start command line AS ADMINISTRATOR and navigate to that directory and execute following command (if needed, adjust the actual path to SCIA Engineer install directory):
 ```
