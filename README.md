@@ -9,7 +9,7 @@
         * start command line AS ADMINISTRATOR and navigate to that directory and execute following command (if needed, adjust the actual path to SCIA Engineer install directory):
 ```
 for32bit:
-regasm "c:\Program Files\SCIA\Engineer19.0 (x86)\SCIA.OpenAPI.dll" /tlb:"c:\Program Files\SCIA\Engineer19.0 (x86)\SCIA.OpenAPI.tlb" /codebase
+regasm "c:\Program Files (x86)\SCIA\Engineer19.0\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19.0\SCIA.OpenAPI.tlb" /codebase
 
 for64bit:
 regasm "c:\Program Files\SCIA\Engineer19.0\SCIA.OpenAPI.dll" /tlb:"c:\Program Files\SCIA\Engineer19.0\SCIA.OpenAPI.tlb" /codebase
