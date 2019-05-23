@@ -5,10 +5,14 @@
     * following steps should be done automatically during SCIA Engineer setup:
         * install .NET FW 4.6.1 or newer
         * start command line AS ADMINISTRATOR and navigate to SEn install directory and run "ep_regsvr32 esa.exe" (for 64bit "ep_regsvr64 esa.exe")
-        * find your .NET FW install directory (e.g. c:\Windows\Microsoft.NET\Framework\v4.0.30319 for 32bit, c:\Windows\Microsoft.NET\Framework64\v4.0.30319) 
+        * find your .NET FW install directory (e.g. c:\Windows\Microsoft.NET\Framework\v4.0.30319 for 32bit, c:\Windows\Microsoft.NET\Framework64\v4.0.30319 for 64bit) 
         * start command line AS ADMINISTRATOR and navigate to that directory and execute following command (if needed, adjust the actual path to SCIA Engineer install directory):
 ```
-regasm "c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.dll" /tlb:"c:\Program Files (x86)\SCIA\Engineer19\SCIA.OpenAPI.tlb" /codebase
+for32bit:
+regasm "c:\Program Files\SCIA\Engineer19.0 (x86)\SCIA.OpenAPI.dll" /tlb:"c:\Program Files\SCIA\Engineer19.0 (x86)\SCIA.OpenAPI.tlb" /codebase
+
+for64bit:
+regasm "c:\Program Files\SCIA\Engineer19.0\SCIA.OpenAPI.dll" /tlb:"c:\Program Files\SCIA\Engineer19.0\SCIA.OpenAPI.tlb" /codebase
 ```
 * run SCIA Engineer to check it works (e.g. set protection, etc.)
 * copy the .\res.\excel.config file to Excel.exe location (e.g. for 32bit MS Office c:\Program Files (x86)\Microsoft Office\root\Office16\ )
