@@ -29,6 +29,7 @@ regasm "c:\Program Files\SCIA\Engineer19.0\SCIA.OpenAPI.dll" /tlb:"c:\Program Fi
    * check the "SCIA API for external developers"
 * You can validate that you can see SCIA.OpenAPI.dll classes in View > Object Browser
 * You can start your VBA development using the SCIA.OpenAPI.dll functionality
+* When finishing your work with Scia.OpenAPI in your script, don't forget to call the SCIA.OpenAPI.Environment.Dispose() method for your specific environemnt object!!!
 
 ## Remarks
 * you can get inspiration from enclosed example
