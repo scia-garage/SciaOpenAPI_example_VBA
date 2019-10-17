@@ -29,6 +29,10 @@ Public Function OpenApiExample() As Integer
   'Open empty project
   Dim proj As EsaProject
   Set proj = env.OpenProject(templ)
+  If proj = Null Then
+  Exit Function
+  End If
+  
   'Debug.Print "Template opened"
   
   'Create materials in local ADM
@@ -37,7 +41,7 @@ Public Function OpenApiExample() As Integer
   Dim conmat As SCIA_OpenAPI.Material
   Set conmat = New SCIA_OpenAPI.Material
   Set conmat.ID = comatid
-  conmat.Name = "Concrete" 'Sheets("Input").Cells(4, 2).Value
+  conmat.Name = Sheets("Input").Cells(4, 2).Value
   conmat.Type = 0
   conmat.Quality = Sheets("Input").Cells(4, 2).Value
   
@@ -48,7 +52,7 @@ Public Function OpenApiExample() As Integer
   Dim stmat As SCIA_OpenAPI.Material
   Set stmat = New SCIA_OpenAPI.Material
   Set stmat.ID = stmatid
-  stmat.Name = "Steel" 'Sheets("Input").Cells(5, 2)
+  stmat.Name = Sheets("Input").Cells(5, 2)
   stmat.Type = 1
   stmat.Quality = Sheets("Input").Cells(5, 2).Value
   Call proj.Model.CreateMaterial(stmat)
@@ -220,7 +224,11 @@ Public Function OpenApiExample() As Integer
   Dim sup1 As New SCIA_OpenAPI.PointSupport
   Set sup1.ID = sup1id
   sup1.Name = "PS1"
-  Set sup1.NodeId = n1id
+  Set sup1.Member = n1id
+  sup1.ConstraintRx = eConstraintType_Free
+  sup1.ConstraintRy = eConstraintType_Free
+  sup1.ConstraintRz = eConstraintType_Free
+  
   Call proj.Model.CreatePointSupport(sup1)
   
   Dim sup2id As New ApiGuid
@@ -228,7 +236,7 @@ Public Function OpenApiExample() As Integer
   Dim sup2 As New SCIA_OpenAPI.PointSupport
   Set sup2.ID = sup2id
   sup2.Name = "PS2"
-  Set sup2.NodeId = n2id
+  Set sup2.Member = n2id
   Call proj.Model.CreatePointSupport(sup2)
   
   Dim sup3id As New ApiGuid
@@ -236,7 +244,7 @@ Public Function OpenApiExample() As Integer
   Dim sup3 As New SCIA_OpenAPI.PointSupport
   Set sup3.ID = sup3id
   sup3.Name = "PS3"
-  Set sup3.NodeId = n3id
+  Set sup3.Member = n3id
   Call proj.Model.CreatePointSupport(sup3)
   
   Dim sup4 As New SCIA_OpenAPI.PointSupport
@@ -244,7 +252,7 @@ Public Function OpenApiExample() As Integer
   Call sup4id.SetFromString(Get_NewGUID())
   Set sup4.ID = sup4id
   sup4.Name = "PS4"
-  Set sup4.NodeId = n4id
+  Set sup4.Member = n4id
   Call proj.Model.CreatePointSupport(sup4)
   
   
@@ -266,8 +274,18 @@ Public Function OpenApiExample() As Integer
   s1.Thickness = Sheets("Input").Cells(7, 2).Value
   s1.Type = 0
   Call proj.Model.CreateSlab(s1)
- 
   
+  Dim lSupport As New SCIA_OpenAPI.LineSupport
+  Dim lSupportid As New ApiGuid
+  Call lSupportid.SetFromString(Get_NewGUID())
+  Set lSupport.ID = lSupportid
+  lSupport.Name = "LineSupport"
+  Set lSupport.Member = b1.ID
+  lSupport.ConstraintRx = SCIA_OpenAPI.eConstraintType.eConstraintType_Free
+  lSupport.ConstraintRy = SCIA_OpenAPI.eConstraintType.eConstraintType_Free
+  lSupport.ConstraintRz = SCIA_OpenAPI.eConstraintType.eConstraintType_Free
+  Call proj.Model.CreateLineSupport(lSupport)
+ 
   
   Dim lg1id As New ApiGuid
   Call lg1id.SetFromString(Get_NewGUID())
@@ -287,6 +305,21 @@ Public Function OpenApiExample() As Integer
   lc1.LoadCaseType = 1
   Call proj.Model.CreateLoadCase(lc1)
   
+  ' Combination
+'  Dim combinationItems As New Collection
+'  Dim CI1 As New CombinationItem
+'  CI1.Coefficient = 1.5
+'  Set CI1.LoadCase = lc1
+'  combinationItems.Add (CI1)
+'  Dim C1 As New SCIA_OpenAPI.Combination
+'  Dim C1id As New ApiGuid
+'  Call C1id.SetFromString(Get_NewGUID())
+'  Set C1.ID = C1id
+'  C1.Name = "C1"
+'  Call C1.SetCombinationContentVBA(combinationItems)
+'  C1.NationalStandard = eLoadCaseCombinationStandard.eLoadCaseCombinationStandard_EnUlsSetB
+'  Call proj.Model.CreateCombination(C1)
+  
   Dim sl1id As New ApiGuid
   Call sl1id.SetFromString(Get_NewGUID())
   Dim sl1 As New SCIA_OpenAPI.SurfaceLoad
@@ -298,9 +331,31 @@ Public Function OpenApiExample() As Integer
   sl1.Value = Sheets("Input").Cells(8, 2).Value
   Call proj.Model.CreateSurfaceLoad(sl1)
   
+  Dim lLoad As New SCIA_OpenAPI.LineLoadOnBeam
+  Dim lLoadtid As New ApiGuid
+  Call lLoadtid.SetFromString(Get_NewGUID())
+  Set lLoad.ID = lLoadtid
+  lLoad.Name = "LineLoad"
+  Set lLoad.Member = b1.ID
+  Set lLoad.LoadCase = lc1.ID
+  lLoad.Value1 = -12500
+  lLoad.Value2 = -12500
+  lLoad.Direction = SCIA_OpenAPI.eDirection.eDirection_X
+  Call proj.Model.CreateLineLoad(lLoad)
 
-
-
+  
+  Dim lLoadEdge As New SCIA_OpenAPI.LineLoadOnSlabEdge
+  Dim lLoadEdgeid As New ApiGuid
+  Call lLoadEdgeid.SetFromString(Get_NewGUID())
+  Set lLoadEdge.ID = lLoadEdgeid
+  lLoadEdge.Name = "LineLoadEdge"
+  Set lLoadEdge.Member = s1.ID
+  lLoadEdge.EdgeIndex = 0
+  Set lLoadEdge.LoadCase = lc1.ID
+  lLoadEdge.Value1 = -12500
+  lLoadEdge.Value2 = -12500
+  lLoadEdge.Direction = SCIA_OpenAPI.eDirection.eDirection_X
+  Call proj.Model.CreateLineLoad_2(lLoadEdge)
   
   Call proj.Model.RefreshModel_ToSCIAEngineer
   
@@ -309,6 +364,7 @@ Public Function OpenApiExample() As Integer
 
   Dim rapi As ResultsAPI
   Set rapi = proj.Model.InitializeResultsAPI()
+ 
 
   Dim keyIntForcesB1 As New ResultKey
   keyIntForcesB1.EntityType = eDsElementType_eDsElementType_Beam
@@ -320,7 +376,19 @@ Public Function OpenApiExample() As Integer
   keyIntForcesB1.CoordSystem = eCoordSystem_eCoordSys_Local
 
   Dim rintf As Result
-  Set rintf = rapi.LoadResult(keyIntForcesB1)
+'  Set rintf = rapi.LoadResult(keyIntForcesB1)
+  
+  'Dim keyIntForcesB1Combi As New ResultKey
+  'keyIntForcesB1Combi.EntityType = eDsElementType_eDsElementType_Beam
+  'keyIntForcesB1Combi.EntityName = "beam1"
+  'keyIntForcesB1Combi.CaseType = eDsElementType_eDsElementType_Combination
+  'Set keyIntForcesB1Combi.CaseId = lc1id
+  'keyIntForcesB1Combi.Dimension = eDimension_eDim_1D
+  'keyIntForcesB1Combi.ResultType = eResultType_eFemBeamInnerForces
+  'keyIntForcesB1Combi.CoordSystem = eCoordSystem_eCoordSys_Local
+
+'  Dim rintfCombi As Result
+'  Set rintfCombi = rapi.LoadResult(keyIntForcesB1Combi)
   
 'Dim resulttable As String
 '  resulttable = rintf.GetTextOutput()
@@ -331,15 +399,15 @@ Public Function OpenApiExample() As Integer
   i = 0
   j = 0
   
- Do While i < rintf.GetMeshElementCount()
-  Sheets("Result").Cells(i + 3, j + 1) = i + 1
-    Do While j < rintf.GetMagnitudesCount()
-    Sheets("Result").Cells(i + 3, j + 2) = rintf.GetValue(j, i)
-    j = j + 1
-  Loop
-  i = i + 1
-  j = 0
-  Loop
+' Do While i < rintf.GetMeshElementCount()
+'  Sheets("Result").Cells(i + 3, j + 1) = i + 1
+'    Do While j < rintf.GetMagnitudesCount()
+'    Sheets("Result").Cells(i + 3, j + 2) = rintf.GetValue(j, i)
+'    j = j + 1
+'  Loop
+'  i = i + 1
+'  j = 0
+'  Loop
 
 
   Dim keySlabDef As New ResultKey
@@ -352,20 +420,20 @@ Public Function OpenApiExample() As Integer
   keySlabDef.CoordSystem = eCoordSystem_eCoordSys_Local
 
   Dim defSlabRes As Result
-  Set defSlabRes = rapi.LoadResult(keySlabDef)
+'  Set defSlabRes = rapi.LoadResult(keySlabDef)
 
 i = 0
 j = 0
 
-Do While i < defSlabRes.GetMeshElementCount()
-    Sheets("Result").Cells(i + 18, j + 1) = i + 1
-    Do While j < defSlabRes.GetMagnitudesCount()
-      Sheets("Result").Cells(i + 18, j + 2) = defSlabRes.GetValue(j, i)
-    j = j + 1
-  Loop
-  i = i + 1
-  j = 0
-  Loop
+'Do While i < defSlabRes.GetMeshElementCount()
+'    Sheets("Result").Cells(i + 18, j + 1) = i + 1
+'    Do While j < defSlabRes.GetMagnitudesCount()
+'      Sheets("Result").Cells(i + 18, j + 2) = defSlabRes.GetValue(j, i)
+'    j = j + 1
+'  Loop
+'  i = i + 1
+'  j = 0
+'  Loop
 
     'Dim resulttable As String
     'resulttable = defSlabRes.GetTextOutput()
