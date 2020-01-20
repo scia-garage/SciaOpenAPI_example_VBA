@@ -50,6 +50,7 @@ Public Function OpenApiExample() As Integer
   'Debug.Print "Template opened"
   
   'Create materials in local ADM
+  Dim comatid As New ApiGuid
   Call comatid.SetFromString(Get_NewGUID())
   Dim conmat As SCIA_OpenAPI.Material
   Set conmat = New SCIA_OpenAPI.Material
