@@ -1,7 +1,21 @@
 Attribute VB_Name = "Module1"
 Option Explicit
+Private Sub DeleteTemp(TempFolder As String)
+
+    Dim FSO As Scripting.FileSystemObject
+    Set FSO = New Scripting.FileSystemObject
+
+    If FSO.FolderExists(TempFolder) Then
+        Call FSO.DeleteFolder(TempFolder, True)
+    End If
+
+
+End Sub
 
 Public Function OpenApiExample() As Integer
+ Dim TempFolder As String
+ TempFolder = Sheets("Input").Cells(12, 2).Value
+ DeleteTemp (TempFolder)
  
   Dim SENpath As String
   SENpath = Sheets("Input").Cells(10, 2).Value
@@ -13,9 +27,9 @@ Public Function OpenApiExample() As Integer
 '  Debug.Print SENpath
 '  Debug.Print templ
   
-  Dim env As SCIA_OpenAPI.Environment
-  Set env = New SCIA_OpenAPI.Environment
   
+  Dim env As New SCIA_OpenAPI.Environment
+ 
   'Setting of environment
   Call env.Init(SENpath, ".\tmp", "1.0.0.0")
   
@@ -36,7 +50,6 @@ Public Function OpenApiExample() As Integer
   'Debug.Print "Template opened"
   
   'Create materials in local ADM
-  Dim comatid As New ApiGuid
   Call comatid.SetFromString(Get_NewGUID())
   Dim conmat As SCIA_OpenAPI.Material
   Set conmat = New SCIA_OpenAPI.Material
