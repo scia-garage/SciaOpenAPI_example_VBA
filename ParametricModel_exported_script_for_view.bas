@@ -323,7 +323,7 @@ Public Function OpenApiExample() As Integer
 '  Dim combinationItems As New Collection
 '  Dim CI1 As New CombinationItem
 '  CI1.Coefficient = 1.5
-'  Set CI1.LoadCase = lc1
+'  Set CI1.LoadCase = lc1id
 '  combinationItems.Add (CI1)
 '  Dim C1 As New SCIA_OpenAPI.Combination
 '  Dim C1id As New ApiGuid
